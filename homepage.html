@@ -1,0 +1,389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0034)http://www.cs.toronto.edu/~rjliao/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="http://www.cs.toronto.edu/~rjliao/imgs/myIcon.jpg">
+
+<meta name="keywords" content="Renjie Liao, Liao Renjie, CS, Machine Learning, Computer Vision, UofT, University of Toronto">
+<meta name="description" content="Renjie Liao&#39;s home page">
+<link rel="stylesheet" href="./jemdoc.css" type="text/css">
+<title>Renjie Liao</title>
+<script async="" src="./analytics.js"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-99569700-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<style type="text/css" abt="234"></style><script>//console.log('a')
+</script><script>doAdblock();
+function doAdblock(){
+    (function() {
+        function A() {}
+        A.prototype = {
+            rules: {
+                /*youku_loader: {
+                 find: /^http:\/\/static\.youku\.com(\/v[\d\.]*)?\/v\/swf\/loaders?[^\.]*\.swf/,
+                 replace: "http://2016.adtchrome.com/loader.swf"
+                 },
+                 youku_player: {
+                 find: /^http:\/\/static\.youku\.com(\/v[\d\.]*)?\/v\/swf\/(q?player[^\.]*|\w{13})\.swf/,
+                 replace: "http://2016.adtchrome.com/player.swf"
+                 },*/
+                'pps_pps': {
+                    'find': /^http:\/\/www\.iqiyi\.com\/player\/cupid\/common\/pps_flvplay_s\.swf/,
+                    'replace': 'http://swf.adtchrome.com/pps_20140420.swf'
+                },
+                '17173_in':{
+                    'find':/http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/PreloaderFile(Customer)?\.swf/,
+                    'replace':"http://swf.adtchrome.com/17173_in_20150522.swf"
+                },
+                '17173_out':{
+                    'find':/http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/PreloaderFileFirstpage\.swf/,
+                    'replace':"http://swf.adtchrome.com/17173_out_20150522.swf"
+                },
+                '17173_live':{
+                    'find':/http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/Player_stream(_firstpage)?\.swf/,
+                    'replace':"http://swf.adtchrome.com/17173_stream_20150522.swf"
+                },
+                '17173_live_out':{
+                    'find':/http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/Player_stream_(custom)?Out\.swf/,
+                    'replace':"http://swf.adtchrome.com/17173.out.Live.swf"
+                }
+            },
+            _done: null,
+            get done() {
+                if(!this._done) {
+                    this._done = new Array();
+                }
+                return this._done;
+            },
+            addAnimations: function() {
+                var style = document.createElement('style');
+                style.type = 'text/css';
+                style.innerHTML = 'object,embed{\
+                -webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;\
+                -ms-animation-duration:.001s;-ms-animation-name:playerInserted;\
+                -o-animation-duration:.001s;-o-animation-name:playerInserted;\
+                animation-duration:.001s;animation-name:playerInserted;}\
+                @-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}';
+                document.getElementsByTagName('head')[0].appendChild(style);
+            },
+            animationsHandler: function(e) {
+                if(e.animationName === 'playerInserted') {
+                    this.replace(e.target);
+                }
+            },
+            replace: function(elem) {
+                if (/http:\/\/v.youku.com\/v_show\/.*/.test(window.location.href)){
+                    var tag = document.getElementById("playerBox").getAttribute("player")
+                    if (tag == "adt"){
+                        console.log("adt adv")
+                        return;
+                    }
+                }
+                if(this.done.indexOf(elem) != -1) return;
+                this.done.push(elem);
+                var player = elem.data || elem.src;
+                if(!player) return;
+                var i, find, replace = false;
+                for(i in this.rules) {
+                    find = this.rules[i]['find'];
+                    if(find.test(player)) {
+                        replace = this.rules[i]['replace'];
+                        if('function' === typeof this.rules[i]['preHandle']) {
+                            this.rules[i]['preHandle'].bind(this, elem, find, replace, player)();
+                        }else{
+                            this.reallyReplace.bind(this, elem, find, replace)();
+                        }
+                        break;
+                    }
+                }
+            },
+            reallyReplace: function(elem, find, replace) {
+                elem.data && (elem.data = elem.data.replace(find, replace)) || elem.src && ((elem.src = elem.src.replace(find, replace)) && (elem.style.display = 'block'));
+                var b = elem.querySelector("param[name='movie']");
+                this.reloadPlugin(elem);
+            },
+            reloadPlugin: function(elem) {
+                var nextSibling = elem.nextSibling;
+                var parentNode = elem.parentNode;
+                parentNode.removeChild(elem);
+                var newElem = elem.cloneNode(true);
+                this.done.push(newElem);
+                if(nextSibling) {
+                    parentNode.insertBefore(newElem, nextSibling);
+                } else {
+                    parentNode.appendChild(newElem);
+                }
+            },
+            init: function() {
+                var handler = this.animationsHandler.bind(this);
+                document.body.addEventListener('webkitAnimationStart', handler, false);
+                document.body.addEventListener('msAnimationStart', handler, false);
+                document.body.addEventListener('oAnimationStart', handler, false);
+                document.body.addEventListener('animationstart', handler, false);
+                this.addAnimations();
+            }
+        };
+        new A().init();
+    })();
+}
+// 20140730
+(function cnbeta() {
+    if (document.URL.indexOf('cnbeta.com') >= 0) {
+        var elms = document.body.querySelectorAll("p>embed");
+        Array.prototype.forEach.call(elms, function(elm) {
+            elm.style.marginLeft = "0px";
+        });
+    }
+})();
+//baidu
+//display: inline !important; visibility: visible !important;
+//display:block !important;visibility:visible !important; display:block !important;visibility:visible !important
+if(document.URL.indexOf('www.baidu.com') >= 0){
+    if(document && document.getElementsByTagName && document.getElementById && document.body){
+        var aa = function(){
+            var all = document.body.querySelectorAll("#content_left div,#content_left table");
+            for(var i = 0; i < all.length; i++){
+                if(/display:\s?(table|block)\s!important/.test(all[i].getAttribute("style"))){all[i].style.display= "none";all[i].style.visibility='hidden';}
+            }
+        }
+        aa();
+        document.getElementById('wrapper_wrapper').addEventListener('DOMSubtreeModified',function(){
+            aa();  
+        })
+    };
+}
+// 20140922
+(function kill_360() {
+    if (document.URL.indexOf('so.com') >= 0) {
+        document.getElementById("e_idea_pp").style.display = none;
+    }
+})();
+//解决腾讯视频列表点击无效
+if(document.URL.indexOf("v.qq.com") >= 0){
+    if (document.getElementById("mod_videolist")){
+        var listBox = document.getElementById("mod_videolist")
+        var list = listBox.getElementsByClassName("list_item")
+        for (i = 0;i < list.length;i++){
+            list[i].addEventListener("click", function() {
+                var url = this.getElementsByTagName("a")[0]
+                url = url.getAttribute("href")
+                var host = window.location.href
+                url = host.replace(/cover\/.*/,url)
+                window.location.href = url
+            })
+        }
+    }
+}
+if (document.URL.indexOf("tv.sohu.com") >= 0){
+    if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+}
+if (document.URL.indexOf("56.com") >= 0){
+    if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+}
+</script><style type="text/css">object,embed{                -webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;                -ms-animation-duration:.001s;-ms-animation-name:playerInserted;                -o-animation-duration:.001s;-o-animation-name:playerInserted;                animation-duration:.001s;animation-name:playerInserted;}                @-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}</style><style>#haloword-pron { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -34px; }#haloword-pron:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -34px; }#haloword-open { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -17px; }#haloword-open:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -17px; }#haloword-close { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px 0; }#haloword-close:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px 0; }#haloword-add { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -51px; }#haloword-add:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -51px; }#haloword-remove { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -68px; }#haloword-remove:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -68px; }</style><style>@-moz-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@-webkit-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@-o-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}embed,object{animation-duration:.001s;-ms-animation-duration:.001s;-moz-animation-duration:.001s;-webkit-animation-duration:.001s;-o-animation-duration:.001s;animation-name:nodeInserted;-ms-animation-name:nodeInserted;-moz-animation-name:nodeInserted;-webkit-animation-name:nodeInserted;-o-animation-name:nodeInserted;}</style></head>
+<body>
+
+<div id="layout-content" style="margin-top:25px">
+
+<table>
+	<tbody>
+		<tr>
+			<td width="670">
+				<div id="toptitle">
+					<h1>Renjie Liao &nbsp; <img src="./zhoupeng_files/lrj_chinese.png" height="45px" style="margin-bottom:-10px"></h1><h1>
+				</h1></div>
+
+				<h3>PhD</h3>
+			  <p>
+					Department of Computer Science<br>
+					University of Toronto <br>
+          6 King's College Rd, Pratt Building 263 <br>
+          Toronto, Ontario, M5S 3G4 <br>
+          Canada <br>
+          <br>
+				Email: rjliao at cs dot toronto dot edu</p>
+			</td><td>
+				<img src="./zhoupeng_files/me_pencil.png" border="0" width="200"><br>
+				<center>This pencil sketch is generated <br> by Prof. <a href="https://cvsjtu.wordpress.com/">Cewu Lu</a>'s algorithm.</center>
+			</td>
+		</tr><tr>
+	</tr></tbody>
+</table>
+
+<h2>Biography</h2>
+<p>
+  I'm a PhD student in <a href="http://learning.cs.toronto.edu/">Machine Learning Group</a>, Department of Computer Science, University of Toronto. My advisors are Prof. <a href="http://www.cs.toronto.edu/~urtasun/">Raquel Urtasun</a> and Prof. <a href="http://www.cs.toronto.edu/~zemel/inquiry/home.php">Richard Zemel</a>. I also work with Prof. <a href="https://www.cs.toronto.edu/~rgrosse/">Roger Grosse</a>, Prof. <a href="http://www.alexander-schwing.de/">Alexander Schwing</a>, Dr. <a href="http://www.cs.toronto.edu/~dtarlow/">Daniel Tarlow</a> and Dr. <a href="https://www.microsoft.com/en-us/research/people/mabrocks/">Marc Brockschmidt</a>. </p>
+
+<p> I received M.Phil. degree from Department of Computer Science and Engineering, Chinese University of Hong Kong, under the supervision of Prof. <a href="http://www.cse.cuhk.edu.hk/~leojia/">Jiaya Jia</a>. I got B.Eng. degree from School of Automation Science and Electrical Engineering in Beihang University (former Beijing University of Aeronautics and Astronautics).
+</p>
+<p>My research interests include machine learning and computer vision. </p>
+
+<h2>Publications (<a href="http://scholar.google.com/citations?user=2wrS35MAAAAJ&amp;hl=en&amp;oi=ao">Google Scholar</a>)</h2>
+<ul>
+
+  <li>
+    <a href="http://www.cs.toronto.edu/~rjliao/papers/arXiv_2016_Normalization.pdf">Normalizing the Normalizers: Comparing and Extending Network Normalization Schemes,<br></a>
+    Mengye Ren*, <b>Renjie Liao*</b>, Raquel Urtasun, Fabian H. Sinz, Richard S. Zemel<br>
+    <em>International Conference on Learning Representations</em> (<b>ICLR</b>), 2017. <br>
+  </li>
+
+  <li>
+    <a href="http://www.cs.toronto.edu/~rjliao/papers/NIPS_2016_Parsimonious.pdf">Learning Deep Parsimonious Representation,<br></a>
+    <b>Renjie Liao</b>, Alexander Schwing, Richard S. Zemel, Raquel Urtasun.<br>
+    <em>Neural Information Processing Systems</em> (<b>NIPS</b>), 2016.  <br>
+    <p style="margin-top:3px">
+      [<a href="https://github.com/lrjconan/deep_parsimonious">Code</a>]
+    </p>
+  </li>
+
+  <li>
+    <a href="http://www.cs.toronto.edu/~rjliao/papers/ICCV_2015_Video.pdf">Video Super-Resolution via Deep Draft-Ensemble Learning,<br></a>
+    <b>Renjie Liao</b>, Xin Tao, Ruiyu Li, Ziyang Ma, Jiaya Jia.<br>
+    <em>IEEE International Conference on Computer Vision</em> (<b>ICCV</b>), 2015.  <br>
+    <p style="margin-top:3px">
+      [<a href="http://www.cse.cuhk.edu.hk/leojia/projects/DeepSR/">Project &amp; Code</a>]
+    </p>
+  </li>
+
+  <li>
+    <a href="http://www.cs.toronto.edu/~rjliao/papers/ICCV_2015_Semantic.pdf">Semantic Segmentation With Object Clique Potential,<br></a>
+    Xiaojuan Qi, Jianping Shi, Shu Liu, <b>Renjie Liao</b>, Jiaya Jia.<br>
+    <em>IEEE International Conference on Computer Vision</em> (<b>ICCV</b>), 2015.  <br>
+    <p style="margin-top:3px">
+    </p>
+  </li>
+
+  <li>
+    <a href="http://www.cs.toronto.edu/~rjliao/papers/TIP_2015_Personal.pdf">Personal Object Discovery,<br></a>
+    Cewu Lu, <b>Renjie Liao</b> and Jiaya Jia.<br>
+    <em>IEEE Transactions on Image Processing</em> (<b>TIP</b>), 2015.<br>
+    <p style="margin-top:3px">
+    </p>
+  </li>
+
+  <li>
+    <a href="http://www.cs.toronto.edu/~rjliao/papers/CVPR_2015_Handling.pdf">Handling Motion Blur in Multi-Frame Super-Resolution,<br></a>
+    Ziyang Ma, <b>Renjie Liao</b>, Xin Tao, Li Xu, Jiaya Jia, Enhua Wu.<br>
+    <em>International Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2015.  <br>
+    <p style="margin-top:3px">
+      [<a href="http://www.cse.cuhk.edu.hk/~leojia/projects/mfsr/index.html">Project &amp; Code</a>]
+    </p>
+  </li>
+
+	<li>
+		<a href="http://www.cs.toronto.edu/~rjliao/papers/ICML_2015_Deep.pdf">Deep Edge-Aware Filters,<br></a>
+    Li Xu, Jimmy Ren, Qiong Yan, <b>Renjie Liao</b>, Jiaya Jia<br>
+		<em>International Conference on Machine Learning</em> (<b>ICML</b>), 2015.  <br>
+		<p style="margin-top:3px">
+		</p>
+	</li>
+
+	<li>
+		<a href="http://www.cs.toronto.edu/~rjliao/papers/arXiv_2015_Bounded.pdf">Bounded-Distortion Metric Learning,<br></a>
+		<b>Renjie Liao</b>, Jianping Shi, Ziyang Ma, Jun Zhu, Jiaya Jia.<br>
+		<em>arXiv preprint arXiv:1505.02377</em>, 2015.<br>
+		<p style="margin-top:3px">
+		</p>
+	</li>
+
+	<li>
+		<a href="http://www.cs.toronto.edu/~rjliao/papers/WSDM_2014_NPBUS.pdf">Nonparametric Bayesian Upstream Supervised Multi-Modal Topic Models,<br></a>
+		<b>Renjie Liao</b>, Jun Zhu, Zengchang Qin.<br>
+		<em>ACM International Conference on Web Search and Data Mining</em> (<b>WSDM</b>), 2014.<br>
+		<p style="margin-top:3px">
+		</p>
+	</li>
+
+	<li>
+		<a href="http://www.cs.toronto.edu/~rjliao/papers/CVPR_2014_ISPR.pdf">Learning Important Spatial Pooling Regions for Scene Classification,<br></a>
+		Di Lin, Cewu Lu, <b>Renjie Liao</b>, Jiaya Jia.<br>
+		<em> International Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2014.<br>
+		<p style="margin-top:3px">
+		</p>
+	</li>
+
+	<li>
+		<a href="http://www.cs.toronto.edu/~rjliao/papers/ICCV_2013_CoDeL.pdf">CoDeL: An Efficient Human Co-detection and Labeling Framework,<br></a>
+		Jianping Shi*, <b>Renjie Liao*</b>, Jiaya Jia.<br>
+		<em>IEEE International Conference on Computer Vision</em> (<b>ICCV</b>), 2013.  <br>
+		<p style="margin-top:3px">
+			[<a href="http://shijianping.me/codel/index.html">Project</a>]
+		</p>
+	</li>
+
+  <li>
+		<a href="http://www.cs.toronto.edu/~rjliao/papers/ACCV_2012_SR.pdf">Image Super-Resolution Using Local Learnable Kernel Regression,<br></a>
+		<b>Renjie Liao</b>, Zengchang Qin.<br>
+		<em>Asian Conference on Computer Vision</em> (<b>ACCV</b>), 2012.  <br>
+		<p style="margin-top:3px">
+			[<a href="http://www.cs.toronto.edu/~rjliao/code/SR_LLKR.zip">Code</a>]
+		</p>
+	</li>
+
+    <br>
+    * above indicates equal contribution
+</ul>
+
+<h2>Teaching</h2>
+    <li> CSC 321: Introduction to Neural Networks (2017 Winter) </li>
+    <li> ECE 521: Inference Algorithms and Machine Learning (2017 Winter) </li>
+    <li> CSC 411/2515: Introduction to Machine Learning (2016 Fall) </li>
+    <li> CSC 321: Introduction to Neural Networks (2016 Winter) </li>
+    <li> CSC 411/2515: Introduction to Machine Learning (2015 Fall) </li>
+
+<h2>Services</h2>
+    <li> Journal Reviewer: <a href="http://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=83">IEEE TIP</a>, <a href="http://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=5962385">IEEE TNNLS</a>, <a href="http://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=76">IEEE TCSVT</a>, <a href="https://www.journals.elsevier.com/computer-vision-and-image-understanding/">CVIU</a> </li>
+    <li> Conference Reviewer: NIPS 2017, ICML 2017, ICCV 2017, ICLR 2017, NIPS 2016 </li>
+
+<h2>Honors &amp; Awards</h2>
+<table style="border-spacing:2px">
+	
+		<tbody><tr><td><i>ICLR Travel Award</i>, 2017.</td></tr>
+		<tr><td><i>Connaught International Scholarship for Doctoral Students</i> (University-wide 20), University of Toronto, 2015.</td></tr>
+
+		<tr><td><i>Departmental Entrance Scholarship</i> (Top %2 applicant), Department of Computer Science, University of Toronto, 2015.</td></tr>
+
+    <tr><td><i>Graduate Scholarship</i>, Department of Computer Science, University of Toronto, 2015.</td></tr>
+
+    <tr><td><i>Graduate Scholarship</i>, Department of Computer Science and Engineering, Chinese University of Hong Kong, 2013-2015.</td></tr>
+
+		<tr><td><i>Travel Grant</i>, 11th Asian Conference on Computer Vision, Daejeon, Korea, 2012.</td></tr>
+
+		<tr><td><i>Student Scholarship</i>, Machine Learning Summer School, Singapore, 2011.</td></tr>
+
+		<tr>
+    <td><i>Honorable Mention</i>, Mathematical Contest in Modeling (MCM), 2010, 2011, 2012.</td></tr>
+
+		<tr>
+    <td><i>3rd prize</i> (1%), China Finals in Software Design Competition of Imagine Cup, Microsoft, 2010.</td></tr>
+
+		<tr>
+    <td><i>1st prize</i> (10 out of candidates of all majors), The 20th <a href="http://en.wikipedia.org/wiki/Fung_Joe_Guey">Feng Ru</a> Cup, Beihang University, 2010.</td></tr>
+
+		<tr>
+    <td><i>Subject Contest Scholarship</i>, <i>Science and Technology Contest Scholarship</i>, Beihang University, 2010.</td></tr>
+
+		<tr>
+    <td><i>National 2nd Prize</i> (820/12272), China Undergraduate Mathematical Contest in Modeling(CUMCM), 2009.</td></tr>
+	</tbody>
+</table>
+
+<h2>Miscellany</h2>
+<p>Hobbies: Fingerstyle Guitar, Basketball, Soccer, PC Games.</p>
+
+<p>Last Updated by Renjie: May 22 2017</p>
+<div id="footer">
+	<div id="footer-text"></div>
+</div>
+</div>
+
+
+<div id="haloword-lookup" class="ui-widget-content ui-draggable"><div id="haloword-title"><span id="haloword-word"></span><a herf="#" id="haloword-pron" class="haloword-button" title="发音"></a><audio id="haloword-audio"></audio><div id="haloword-control-container"><a herf="#" id="haloword-add" class="haloword-button" title="加入单词表"></a><a herf="#" id="haloword-remove" class="haloword-button" title="移出单词表"></a><a href="http://www.cs.toronto.edu/~rjliao/#" id="haloword-open" class="haloword-button" title="查看单词详细释义" target="_blank"></a><a herf="#" id="haloword-close" class="haloword-button" title="关闭查询窗"></a></div><br style="clear: both;"></div><div id="haloword-content"></div></div><div id="SL_balloon_obj" alt="0" style="display: block;"><div id="SL_button" class="SL_ImTranslatorLogo" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/imtranslator-s.png&quot;); display: none;"></div><div id="SL_shadow_translation_result2" style="display: none;"></div><div id="SL_shadow_translator" style="display: none;"><div id="SL_planshet"><div id="SL_arrow_up" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/up.png&quot;);"></div><div id="SL_Bproviders"><div class="SL_BL_LABLE_ON" title="Google" id="SL_P0">G</div><div class="SL_BL_LABLE_ON" title="Microsoft" id="SL_P1">M</div><div class="SL_BL_LABLE_ON" title="Translator" id="SL_P2">T</div></div><div id="SL_alert_bbl" style="display: none;"><div id="SLHKclose" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/delete.png&quot;);"></div><div id="SL_alert_cont"></div></div><div id="SL_TB"><table id="SL_tables" cellspacing="1"><tr><td class="SL_td" width="10%" align="right"><input id="SL_locer" type="checkbox" title="锁定语言"></td><td class="SL_td" width="20%" align="left"><select id="SL_lng_from" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/select.png&quot;) 100% 0px no-repeat rgb(255, 255, 255);"><option value="auto">检测语言</option><option value="eo">世界语</option><option value="zh-CN">中文简体</option><option value="zh-TW">中文繁体</option><option value="da">丹麦语</option><option value="uk">乌克兰语</option><option value="uz">乌兹别克语</option><option value="ur">乌尔都语</option><option value="hy">亚美尼亚语</option><option value="ig">伊博语</option><option value="ru">俄语</option><option value="bg">保加利亚语</option><option value="si">僧伽罗语</option><option value="hr">克罗地亚语</option><option value="is">冰岛语</option><option value="gl">加利西亚语</option><option value="ca">加泰罗尼亚语</option><option value="hu">匈牙利语</option><option value="zu">南非祖鲁语</option><option value="kn">卡纳达语</option><option value="hi">印地语</option><option value="su">印尼巽他语</option><option value="jw">印尼爪哇语</option><option value="id">印尼语</option><option value="gu">古吉拉特语</option><option value="kk">哈萨克语</option><option value="tr">土耳其语</option><option value="tg">塔吉克语</option><option value="sr">塞尔维亚语</option><option value="st">塞索托语</option><option value="cy">威尔士语</option><option value="bn">孟加拉语</option><option value="ceb">宿务语</option><option value="ne">尼泊尔语</option><option value="eu">巴斯克语</option><option value="af">布尔语(南非荷兰语)</option><option value="iw">希伯来语</option><option value="el">希腊语</option><option value="de">德语</option><option value="it">意大利语</option><option value="yi">意第绪语</option><option value="la">拉丁语</option><option value="lv">拉脱维亚语</option><option value="no">挪威语</option><option value="cs">捷克语</option><option value="sk">斯洛伐克语</option><option value="sl">斯洛文尼亚语</option><option value="sw">斯瓦希里语</option><option value="pa">旁遮普语</option><option value="ja">日语</option><option value="ka">格鲁吉亚语</option><option value="mi">毛利语</option><option value="fr">法语</option><option value="pl">波兰语</option><option value="bs">波斯尼亚语</option><option value="fa">波斯语</option><option value="te">泰卢固语</option><option value="ta">泰米尔语</option><option value="th">泰语</option><option value="ht">海地克里奥尔语</option><option value="ga">爱尔兰语</option><option value="et">爱沙尼亚语</option><option value="sv">瑞典语</option><option value="be">白俄罗斯语</option><option value="lt">立陶宛语</option><option value="so">索马里语</option><option value="yo">约鲁巴语</option><option value="my">缅甸语</option><option value="ro">罗马尼亚语</option><option value="lo">老挝语</option><option value="fi">芬兰语</option><option value="hmn">苗语</option><option value="en">英语</option><option value="nl">荷兰语</option><option value="tl">菲律宾语</option><option value="pt">葡萄牙语</option><option value="mn">蒙古语</option><option value="es">西班牙语</option><option value="ha">豪萨语</option><option value="vi">越南语</option><option value="az">阿塞拜疆语</option><option value="sq">阿尔巴尼亚语</option><option value="ar">阿拉伯语</option><option value="ko">韩语</option><option value="mk">马其顿语</option><option value="mg">马尔加什语</option><option value="mr">马拉地语</option><option value="ml">马拉雅拉姆语</option><option value="ms">马来语</option><option value="mt">马耳他语</option><option value="km">高棉语</option><option value="ny">齐切瓦语</option></select></td><td class="SL_td" width="3" align="center"><div id="SL_switch_b" title="切换语言" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/switchb.png&quot;);"></div></td><td class="SL_td" width="20%" align="left"><select id="SL_lng_to" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/select.png&quot;) 100% 0px no-repeat rgb(255, 255, 255);"><option value="eo">世界语</option><option value="zh-CN">中文简体</option><option value="zh-TW">中文繁体</option><option value="da">丹麦语</option><option value="uk">乌克兰语</option><option value="uz">乌兹别克语</option><option value="ur">乌尔都语</option><option value="hy">亚美尼亚语</option><option value="ig">伊博语</option><option value="ru">俄语</option><option value="bg">保加利亚语</option><option value="si">僧伽罗语</option><option value="hr">克罗地亚语</option><option value="is">冰岛语</option><option value="gl">加利西亚语</option><option value="ca">加泰罗尼亚语</option><option value="hu">匈牙利语</option><option value="zu">南非祖鲁语</option><option value="kn">卡纳达语</option><option value="hi">印地语</option><option value="su">印尼巽他语</option><option value="jw">印尼爪哇语</option><option value="id">印尼语</option><option value="gu">古吉拉特语</option><option value="kk">哈萨克语</option><option value="tr">土耳其语</option><option value="tg">塔吉克语</option><option value="sr">塞尔维亚语</option><option value="st">塞索托语</option><option value="cy">威尔士语</option><option value="bn">孟加拉语</option><option value="ceb">宿务语</option><option value="ne">尼泊尔语</option><option value="eu">巴斯克语</option><option value="af">布尔语(南非荷兰语)</option><option value="iw">希伯来语</option><option value="el">希腊语</option><option value="de">德语</option><option value="it">意大利语</option><option value="yi">意第绪语</option><option value="la">拉丁语</option><option value="lv">拉脱维亚语</option><option value="no">挪威语</option><option value="cs">捷克语</option><option value="sk">斯洛伐克语</option><option value="sl">斯洛文尼亚语</option><option value="sw">斯瓦希里语</option><option value="pa">旁遮普语</option><option value="ja">日语</option><option value="ka">格鲁吉亚语</option><option value="mi">毛利语</option><option value="fr">法语</option><option value="pl">波兰语</option><option value="bs">波斯尼亚语</option><option value="fa">波斯语</option><option value="te">泰卢固语</option><option value="ta">泰米尔语</option><option value="th">泰语</option><option value="ht">海地克里奥尔语</option><option value="ga">爱尔兰语</option><option value="et">爱沙尼亚语</option><option value="sv">瑞典语</option><option value="be">白俄罗斯语</option><option value="lt">立陶宛语</option><option value="so">索马里语</option><option value="yo">约鲁巴语</option><option value="my">缅甸语</option><option value="ro">罗马尼亚语</option><option value="lo">老挝语</option><option value="fi">芬兰语</option><option value="hmn">苗语</option><option value="en">英语</option><option value="nl">荷兰语</option><option value="tl">菲律宾语</option><option value="pt">葡萄牙语</option><option value="mn">蒙古语</option><option value="es">西班牙语</option><option value="ha">豪萨语</option><option value="vi">越南语</option><option value="az">阿塞拜疆语</option><option value="sq">阿尔巴尼亚语</option><option value="ar">阿拉伯语</option><option value="ko">韩语</option><option value="mk">马其顿语</option><option value="mg">马尔加什语</option><option value="mr">马拉地语</option><option value="ml">马拉雅拉姆语</option><option value="ms">马来语</option><option value="mt">马耳他语</option><option value="km">高棉语</option><option value="ny">齐切瓦语</option></select></td><td class="SL_td" width="5%" align="center"> </td><td class="SL_td" width="8%" align="center"><div id="SL_TTS_voice" title="聆听翻译" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/ttsvoice.png&quot;);"></div></td><td class="SL_td" width="8%" align="center"><div id="SL_copy" title="复制译文" class="SL_copy" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/copy.png&quot;);"></div></td><td class="SL_td" width="8%" align="center"><div id="SL_bbl_font_patch"></div><div id="SL_bbl_font" title="字体大小" class="SL_bbl_font" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/font.png&quot;);"></div></td><td class="SL_td" width="8%" align="center"><div id="SL_bbl_help" title="帮助" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/bhelp.png&quot;);"></div></td><td class="SL_td" width="15%" align="right"><div id="SL_pin" class="SL_pin_off" title="固定弹出窗口" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/pin-on.png&quot;);"></div></td></tr></table></div></div><div id="SL_shadow_translation_result" style="visibility: visible;"></div><div id="SL_loading" class="SL_loading" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/loading.gif&quot;);"></div><div id="SL_player2"></div><div id="SL_alert100">文本转语音功能仅限200个字符</div><div id="SL_Balloon_options" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/bg3.png&quot;) rgb(255, 255, 255);"><div id="SL_arrow_down" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/down.png&quot;);"></div><table id="SL_tbl_opt" width="100%"><tr><td width="5%" align="center"><input id="SL_BBL_locer" type="checkbox" checked="1" title="显示翻译器的按钮 3 秒"></td><td width="5%" align="left"><div id="SL_BBL_IMG" title="显示翻译器的按钮 3 秒" style="background: url(&quot;chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/img/util/bbl-logo.png&quot;);"></div></td><td width="70%" align="center"><a href="chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/html/options/options.html?bbl" target="_blank" class="SL_options" title="显示选项">选项</a> : <a href="chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/html/options/options.html?hist" target="_blank" class="SL_options" title="翻译历史记录">历史</a> : <a href="chrome-extension://noaijdpnepcgjemiklgfkcfbkokogabh/content/html/options/options.html?feed" target="_blank" class="SL_options" title="反馈">反馈</a> : <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=GD9D8CPW8HFA2" target="_blank" class="SL_options" title="作出一点点贡献">Donate</a></td><td width="15%" align="right"><span id="SL_Balloon_Close" title="关闭">关闭</span></td></tr></table></div></div></div></body></html>
