@@ -36,33 +36,41 @@
                   Shanghai, China <br>
           <br>
 				Email: zhoupeng2014@gmail.com</p>
-			</td><td>
-				<!--<img src="imgs/me.jpeg" border="0" width="200"><br>-->
+			</td>
+
+            <td>
+				<img src="imgs/me.jpeg" border="0" width="290"><br>
 				<!--<img src="imgs/graduate_photo.jpeg" border="0" width="300"><br>-->
-            <img src="imgs/zjz_zhoupeng.png" border="0" width="180"><br>
+            <!--<img src="imgs/zjz_zhoupeng.png" border="0" width="180"><br>-->
 
 			</td>
+
+            <td>
+                <img src="imgs/robot.jpeg" border="0" width="380"><br>
+                <!--<img src="imgs/graduate_photo.jpeg" border="0" width="300"><br>-->
+                <!--<img src="imgs/zjz_zhoupeng.png" border="0" width="180"><br>-->
+
+            </td>
+
 		</tr><tr>
 	</tr></tbody>
 </table>
 
 <h2>Biography</h2>
 <p>
-  I'm an associate researcher in Advertising Engine & Data Algorithm Center, Online Media Group, <a href="https://en.wikipedia.org/wiki/Tencent">Tencent</a> Co. Ltd. Here is my <a href="./CV/PengZhou_CV_4PHD.pdf">resume</a>.
+  I'm an associate researcher in Advertising Engine & Data Algorithm Center, Online Media Group, <a href="https://en.wikipedia.org/wiki/Tencent">Tencent</a> Co. Ltd. Here is my <a href="./CV/PengZhou_CV_4PHD_1211.pdf">resume</a>.
 
 <p> I received Master degree from Department of Software Engineering, University of Tongji last year, under the supervision of Prof. Yan Liu.
     I also worked with Prof.
-    Buyang Cao.
-    <!--<a href="http://sse.tongji.edu.cn/wrao/">WeiXiong Rao</a>-->
+    <a href="http://sse.tongji.edu.cn/wrao/">WeiXiong Rao</a>
      I got B.Eng. degree from School of Computer Science and Technology in Nanjing University of technology.</p>
 
-<p>Recently, I've just finished the Specialization from <a href="https://www.deeplearning.ai/">deepLearning.ai</a>
-    which helps me build a solid foundation of Deep Learning.
-    After that, due to the tutorial about
-    <a href="https://www.youtube.com/watch?v=6rZTaboSY4k">artificial intelligence imitation learning</a>
-     really interested me, I started to learn the reinforcement learning course (<a href="http://rail.eecs.berkeley.edu/deeprlcourse/">CS294-112</a> from UC Berkeley
-    and <a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html">Reinforcement Learning</a> by David Silver) in order a better understanding of that domain.
-    For now, I wish to receive a Ph.d position about imitation learning or robot learning fields.
+<p> The tutorial of
+    <a href="https://www.youtube.com/watch?v=6rZTaboSY4k">Artificial Intelligence: Imitation Learning</a> on ICML2018
+     and the Ted video about
+    <a href="https://www.ted.com/talks/marc_raibert_meet_spot_the_robot_dog_that_can_run_hop_and_open_doors">SpotMini</a>
+    from Boston Dynamics, really interested me and sparked my passion to develop my career in combination of Robotics & AI.
+    <!--Consequently, my ambition is to be a researcher on Artificial Intelligence with specific expertise in robot learning.-->
     </p>
 
     <p>
@@ -74,6 +82,38 @@
     <h2>Projects</h2>
     <!--<img src="imgs/AHTM_heatmap.png" border="0" width="500"><br>-->
     <ul>
+
+        <li>
+            <b>Behavior Cloning Based on End to End Learning</b> (2018.10) <br>
+            Cloned human driving behavior in a simple car simulator with an end to end approach <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Collected a dataset including ’middle’ mode and ’ecovery’ mode then balanced the dataset;
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Done data augmentation by horizontal flip, vertical flip and random shadow;
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Build network architecture based on the Nvidia’s paper of end to end learning for self-driving car.
+            <br><br>
+            <img src="imgs/network_structure.png" border="0" width="800"><br>
+            <span style="font-size:12px; text-align: center;display:block;" >Figure1.the wordnet built by the topic word from D3.js</span>
+            <br>
+            <table><tr>
+                <td><img src="imgs/Validation_track.gif" border="0" width="400"><br></td>
+                <td><img src="imgs/Unseen_track.gif" border="0" width="400"><br></td>
+            </tr></table>
+            Finally this agent network managed to drive on both known and unseen tracks endlessly.
+
+        </li>
+
+        <li>
+            <b>Smart Online Large Scale Advertising System</b> (2017.6~2018.1) <br>
+            1. Suggested threes methods to obtain the class seed in positive corpus:<i>AP Clustering, PLSA, Word2vec.</i>
+            <br>
+            2. Applied bayesian model and logistic regression model  to Co-Training algorithm and PU-Learning algorithm respectively, and the classifier would be more strong and better stability after multiple iterations.
+        </li>
+        <img src="imgs/DeepFM.png" border="0" width="900"><br>
+        Figure2. Automatic labeling system framework. <br><br>
+
+
+
         <li>
             <b>Topic Modeling on APIs of Source Code Repository</b> (2015.08~2017.3) - graduate thesis <br>
             Proposed a hierarchical topic modeling method for open source APIs - AHTM, which contains <br>
@@ -86,8 +126,12 @@
             Finally discussed the validity of AHTM by using the popular repositories, such as D3.js.
         </li>
 
-        <img src="imgs/AHTM_WordNet.png" border="0" width="400"><br>
-        Figure1.the wordnet built by the topic word from D3.js <br><br>
+        <table><tr>
+            <td><img src="imgs/AHTM_WordNet.png" border="0" width="400"><br></td>
+            <td><img src="imgs/topic_heat.png" border="0" width="400"><br></td>
+        </tr></table>
+        <!--<img src="imgs/AHTM_WordNet.png" border="0" width="400"><br>-->
+        <!--Figure1.the wordnet built by the topic word from D3.js <br><br>-->
 
         <li>
             <b>Criminal Network Analysis Based on Mobile Call Logs</b> (2015.2~2016.8) <br>
@@ -103,24 +147,17 @@
         <br>
 
 
-        <li>
-            <b>Automatic labeling system for large-scale text training corpus</b> (2016.6~now) <br>
-            1. Suggested threes methods to obtain the class seed in positive corpus:<i>AP Clustering, PLSA, Word2vec.</i>
-            <br>
-            2. Applied bayesian model and logistic regression model  to Co-Training algorithm and PU-Learning algorithm respectively, and the classifier would be more strong and better stability after multiple iterations.
-        </li>
-        <img src="imgs/labeling.png" border="0" width="500"><br>
-        Figure2. Automatic labeling system framework. <br><br>
 
-        <li>
-            <b>Walrus: Advertising Big Data-Management Platform and Querying Engine</b>  (2017.4~now) <br>
-            1. Work on daily researches and developments of Walrus platform. <br>
-            2. Translate the job using pig to job in spark in order to improve the efficiency for certain jobs. <br>
-            3. Responsible for the module of monitoring the jobs running on walrus and sending their key logs to personal phones.
-            <br>
-            4. Finish the module of jobs' time consuming visualization using dynamic refreshing.
 
-        </li>
+        <!--<li>-->
+            <!--<b>Walrus: Advertising Big Data-Management Platform and Querying Engine</b>  (2017.4~now) <br>-->
+            <!--1. Work on daily researches and developments of Walrus platform. <br>-->
+            <!--2. Translate the job using pig to job in spark in order to improve the efficiency for certain jobs. <br>-->
+            <!--3. Responsible for the module of monitoring the jobs running on walrus and sending their key logs to personal phones.-->
+            <!--<br>-->
+            <!--4. Finish the module of jobs' time consuming visualization using dynamic refreshing.-->
+
+        <!--</li>-->
     </ul>
 
 
