@@ -1,15 +1,77 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="shortcut icon" href="imgs/icon.png">
+
+    <link rel="shortcut icon" href="imgs/icon.png">
 
 <meta name="keywords" content="Peng Zhou, Peng Zhou, CS, Machine Learning, Computer Vision, TJU, Tongji University, Shanghai, China">
 <meta name="description" content="Peng Zhou&#39;s home page">
 
 <link rel="stylesheet" href="./jemdoc.css" type="text/css">
+
 <title>Peng Zhou</title>
 <style type="text/css" abt="234"></style>
 </head>
 <body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="./js/springy.js"></script>
+<script src="./js/springyui.js"></script>
+
+
+
+<script>
+    var graph = new Springy.Graph();
+    // graph.addNodes("Technical University of Munich", 'Michael', 'Jessica', 'Timothy', 'Barbara')
+    graph.addNodes(
+            "Robotics and AI",
+            "German",
+            "TUM", "Human-centered Assistive Robotics group",
+            'KIT', "Intelligent Process Automation and Robotics Lab",
+            'LUM',
+            'RWTH',
+            "TU Berlin",
+            "TU Darmstadt",
+            "Robot Learning Group",
+            "Uinv. Heidelberg",
+            "Univ. Stuttgart"
+    );
+
+    graph.addEdges(
+            ['Robotics and AI', "German",  {color: '#660066', label: ''}],
+            ['German', "TUM",  {color: '#660066', label: ''}],
+            ['TUM', "Human-centered Assistive Robotics group",  {color: '#660066', label: ''}],
+            ['German', "KIT",  {color: '#660066', label: ''}],
+            ['KIT', "Intelligent Process Automation and Robotics Lab",  {color: '#660066', label: ''}],
+            ['German', "LUM",  {color: '#660066', label: ''}],
+            ['German', "Uinv. Heidelberg",  {color: '#660066', label: ''}],
+            ['German', "Univ. Stuttgart",  {color: '#660066', label: ''}],
+            ['German', "TU Berlin",  {color: '#660066', label: ''}],
+            ['German', "TU Darmstadt",  {color: '#660066', label: ''}],
+            ["TU Darmstadt", "Robot Learning Group", {color: '#660066', label: ''}],
+
+            ['German', "RWTH",  {color: '#660066', label: ''}]
+    );
+
+    graph.addNodes(
+            'France',
+            'ENSTA ParisTech',
+            'CNRS',
+            "Autonomous Systems and Robotics"
+
+    );
+    graph.addEdges(
+            ['Robotics and AI', "France",  {color: 'blue', label: ''}],
+            ['France', "ENSTA ParisTech",  {color: 'blue', label: ''}],
+            ['ENSTA ParisTech', "Autonomous Systems and Robotics",  {color: 'blue', label: ''}],
+            ['France', "CNRS",  {color: 'blue', label: ''}]
+
+    );
+
+    jQuery(function(){
+        var springy = jQuery('#springydemo').springy({
+            graph: graph
+        });
+    });
+</script>
 
 <div id="layout-content" style="margin-top:25px">
 
@@ -18,7 +80,7 @@
 		<tr>
 			<td width="600">
 				<div  id="toptitle">
-					<h1><a href="https://jeffery-zhou.github.io/jeffery.cv/index.html">Peng's Projects and Publications</a> &nbsp;
+					<h1><a href="./index.html">Peng's Projects and Publications</a> &nbsp;
                     </h1>
 
 
@@ -26,30 +88,38 @@
 	</tr></tbody>
 </table>
 
-<h2>Application Documents</h2>
+    <h2>
+        <span >Application Documents</span>
+    </h2>
     <tr><td><a href="./apply/Peng_Motivation_Letter.pdf"> <span style="font-size: large">0. Motivation Letter</span> </a></td></tr> <br>
-    <tr><td><a href="./apply/Peng_Resume.pdf"> <span style="font-size: large">1. Resume</span> </a></td></tr> <br/>
+    <tr><td><a href="./CV/Peng's_Cover_Letter_V3.0.pdf"> <span style="font-size: large">1. Resume</span> </a></td></tr> <br/>
     <tr><td><a href="./apply/1.Master_Grade_Sheet.png"> <span style="font-size: large">2. Master Grade Sheet</span> </a></td></tr> <br/>
     <tr><td><a href="./apply/3.Bachelor_Grade_Sheet1.png"> <span style="font-size: large">3.1 Bachelor Grade Sheet</span> </a></td></tr> <br/>
     <tr><td><a href="./apply/3.Bachelor_Grade_Sheet2.png"> <span style="font-size: large">3.2 Bachelor Grade Sheet</span> </a></td></tr> <br/>
 
+    <h2>Lab List to be Updated </h2>
+    <canvas id="springydemo" width="900" height="480" />
+    Your browser does not support HTML5 Canvas.
+    </canvas>
+
+
     <h2> Extra Curriculum </h2>
     <table>
         <tbody>
-        <tr><td> On-Reading:  Reinforcement Learning --- An Introduction 2nd Version </td></tr>
+        <tr><td> On-Reading:  Reinforcement Learning --- An Introduction 2nd Version. </td></tr>
         <tr><td> On-Learning: Practical Reinforcement Learning, National Research University-HSE, 2018. </td></tr>
 
-        <tr><td><i> deepLearning.ai Specialization</i>&nbsp; <a href="https://www.coursera.org/account/accomplishments/verify/ML5GG46MZ3PP"> Neural Networks and Deep Learning </a>
+        <tr><td><i> deepLearning.ai Specialization</i>&nbsp; <a style="color = black;" href="https://www.coursera.org/account/accomplishments/verify/ML5GG46MZ3PP"> Neural Networks and Deep Learning. </a>
         </td></tr>
-        <tr><td><i> deepLearning.ai Specialization</i>&nbsp; <a href="https://www.coursera.org/account/accomplishments/verify/CQ4HA93LLH8A"> Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization</a>
+        <tr><td><i> deepLearning.ai Specialization</i>&nbsp; <a href="https://www.coursera.org/account/accomplishments/verify/CQ4HA93LLH8A"> Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization.</a>
         </td></tr>
-        <tr><td><i> deepLearning.ai Specialization</i>&nbsp; <a href="https://www.coursera.org/account/accomplishments/verify/QV676825ZUVM"> Structuring Machine Learning Projects </a>
+        <tr><td><i> deepLearning.ai Specialization</i>&nbsp; <a href="https://www.coursera.org/account/accomplishments/verify/QV676825ZUVM"> Structuring Machine Learning Projects. </a>
         </td></tr>
-        <tr><td><i> deepLearning.ai Specialization</i>&nbsp; <a href="https://www.coursera.org/account/accomplishments/verify/4C957NH8CFT6"> Convolutional Neural Networks</a>
+        <tr><td><i> deepLearning.ai Specialization</i>&nbsp; <a href="https://www.coursera.org/account/accomplishments/verify/4C957NH8CFT6"> Convolutional Neural Networks.</a>
         </td></tr>
-        <tr><td><i> deepLearning.ai Specialization</i>&nbsp; <a href="https://www.coursera.org/account/accomplishments/verify/D5PDC2ND87SF"> Sequence Models</a>
+        <tr><td><i> deepLearning.ai Specialization</i>&nbsp; <a href="https://www.coursera.org/account/accomplishments/verify/D5PDC2ND87SF"> Sequence Models.</a>
         </td></tr>
-        <tr><td><i>Coursera: </i> &nbsp; Machine Learning, Standford, 2017
+        <tr><td><i>Coursera: </i> &nbsp; Machine Learning, Standford, 2017.
         </td></tr>
         <tr><td><i>Coursera: </i> &nbsp;Data Processing Using Python, NJU, 2016.
         </td></tr>
@@ -67,6 +137,10 @@
 	<div id="footer-text"></div>
 </div>
 </div>
+
+
+
+
 
 
 </body>
