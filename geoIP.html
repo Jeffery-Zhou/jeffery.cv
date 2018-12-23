@@ -1,0 +1,28 @@
+<html>
+<body>
+
+<!--<script src="./js/jquery.min.js"></script>-->
+<script src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/js/lib/jquery-1.10.2_1c4228b8.js"></script>
+<script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+
+<script>
+    jQuery(document).ready(function($) {
+        jQuery.getScript('http://www.geoplugin.net/javascript.gp', function()
+        {
+            var country = geoplugin_countryName();
+            $("#country").text(country);
+            var city = geoplugin_city();
+            $("#city").text(city);
+            var ip_addr = geoplugin_request();
+            $("#ip").text(ip_addr);
+
+            console.log("Your location is: " + country + ", " + zone + ", " + district);
+        });
+    });
+
+</script>
+
+Your IP is <span id="ip"></span>, and your location is <span id="country"></span>, <span id="city"></span>
+
+</body>
+</html>

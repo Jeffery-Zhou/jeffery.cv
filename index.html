@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="shortcut icon" href="imgs/icon.png">
+<link rel="shortcut icon" href="imgs/robot.png">
 
 <meta name="keywords" content="Peng Zhou, Peng Zhou, CS, Machine Learning, Computer Vision, TJU, Tongji University, Shanghai, China">
 <meta name="description" content="Peng Zhou&#39;s home page">
@@ -10,42 +10,90 @@
 <style type="text/css" abt="234"></style>
 </head>
 <body>
+<!-- Start of Geo Location -->
+<script src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/js/lib/jquery-1.10.2_1c4228b8.js"></script>
+<script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+<script>
+    jQuery(document).ready(function($) {
+        jQuery.getScript('http://www.geoplugin.net/javascript.gp', function()
+        {
+            var country = geoplugin_countryName();
+            $("#country").text(country);
+            var city = geoplugin_city();
+            $("#city").text(city);
+            var ip_addr = geoplugin_request();
+            $("#ip").text(ip_addr);
+
+//            console.log("Your location is: " + country + ", " + zone + ", " + district);
+        });
+    });
+
+</script>
+<!-- End of Geo Location-->
 
 <div id="layout-content" style="margin-top:25px">
 
 <table>
 	<tbody>
 		<tr>
-			<td width="600">
+			<!--<td width="600">-->
+            <td width="500" >
+
 				<div  id="toptitle">
                     <span style="font-size: x-large">
-                        <a href="./application.html"> Peng Zhou <br> Application Doc</a>
+                        <a href="./application.html"> Peng Zhou's Application Doc</a>
 				    </span>
                 </div>
 
-				<h3>Associate Researcher</h3>
+
+				<span style="font-size: x-large">Associate Researcher @ Tencent</span>
+                <!--<h5>Email: zhoupeng2014@gmail.com</h5>-->
 			  <p>
-					Advertising Engine & Data Algorithm Center, <a href="https://en.wikipedia.org/wiki/Tencent">Tencent </a> Technology Co. Ltd.No.397, TianLin Rd, XuHui District, Shanghai, China <br>
+                  Email: zhoupeng2014@gmail.com <br>
+					Advertising Engine & Data Algorithm Center,
+                  <a href="https://en.wikipedia.org/wiki/Tencent">Tencent </a> Tech.<br>
+                  No.397, TianLin Rd, XuHui District, Shanghai, China <br>
+              </p>
 
-				Email: zhoupeng2014@gmail.com</p>
-			</td>
+                <span>Welcome the visitor from <i><span id="city" style="font-weight: bold"></span></i>, <i> <span id="country" style="font-weight: bold"></span></i> (<i><span id="ip" style="font-weight: bold"></span></i></span>).
 
-            <td>
-				<img src="imgs/me.jpeg" border="0" width="290"><br>
-				<!--<img src="imgs/graduate_photo.jpeg" border="0" width="300"><br>-->
-            <!--<img src="imgs/zjz_zhoupeng.png" border="0" width="180"><br>-->
+            </td>
+            <td width="500">
+                <img src="imgs/me.jpeg" border="0" width="200">
+                <img src="imgs/My_robot.jpeg" border="0" width="240">
 
-			</td>
+            </td>
+		</tr>
 
-            <td>
-                <img src="imgs/robot.jpeg" border="0" width="380"><br>
-                <!--<img src="imgs/graduate_photo.jpeg" border="0" width="300"><br>-->
-                <!--<img src="imgs/zjz_zhoupeng.png" border="0" width="180"><br>-->
+        <tr>
+            <td width="500">
+                <img src="imgs/FTC2.png" border="0" width="480"> <br>
+                <span style="font-size:12px; text-align: center;display:block;" > FTC2016 Final Competition @ Tongji </span>
 
             </td>
 
-		</tr><tr>
-	</tr></tbody>
+            <td width="500">
+                <img src="imgs/Stanford_robotics1.jpeg" border="0" width="450">
+                <span style="font-size:12px; text-align: center;display:block;" > Stanford <a href="https://cs.stanford.edu/groups/manips/ocean-one.html#media">Ocean one</a> : a bimanual underwater humanoid robot</span>
+
+                <!--<img src="imgs/Stanford_robotics2.png" border="0" width="400">-->
+            </td>
+
+
+
+
+            <!--<td width="500">-->
+                <!--<img src="imgs/facebook_visit.jpeg" border="0" width="250">-->
+                <!--<img src="imgs/SAP_intern.jpeg" border="0" width="200">-->
+
+            <!--</td>-->
+	    </tr>
+
+        <tr>
+
+        </tr>
+
+    </tbody>
 </table>
 
 <h2>Biography</h2>
@@ -141,7 +189,8 @@
             3. Conducted a proof of concept study using mobile call logs.
 
         </li>
-        <img src="imgs/SEKE.png" border="0" width="400"> <img src="imgs/SEKE2.png" border="0" width="400"><br>
+        <img src="imgs/SEKE.png" border="0" width="800">
+        <!--<img src="imgs/SEKE2.png" border="0" width="600">-->
 
         <br>
 
