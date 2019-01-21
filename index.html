@@ -132,20 +132,41 @@
     <ul>
 
         <li>
-            <b>Implementations of reinforcement learning on Gym Robotics </b> (2018.12) <br>
-            To be continued...
-              <br>
-            <table><tr>
-                <center>
-                <embed src="./imgs/FetchReach.mp4" width="320" height="240"/>
-                <span> </span>
-                <embed src="./imgs/HandMnpltPeng.mp4" width="320" height="240"/>
-                </center>
-            </tr></table>
-            <span style="font-size:12px; text-align: center;display:block;" >Figure2. The implementation of reinforcement learning in Robotics simulator</span>
+            <b>Implementations of Hindsight Experience Replay(HER) in Gym Robotics </b> (Working Now) <br>
+            Implement Hindsight Experience Replay(HER) with an off-policy RL algorithm in the Gym Robotics simulator.
             <br>
+            So as to achieve a sample-efficient learning with sparse reward, <br>
+            and to avoid the need for complicated reward engineering.
+            <br>
+            <br>
+                    <center>
+                    <img src="imgs/FetchReach_2019-01-21%2018_12_41.gif" border="0" width="300">
+                    <img src="imgs/HandMnpltPen_2019-01-21%2018_13_17.gif" border="0" width="300"><br>
+                    </center>
 
+            <span style="font-size:12px; text-align: center;display:block;" >Figure1. The implementation of HER in Robotics simulator</span>
+            <br>
+        </li>
 
+        <li>
+            <b> A Motor Control Unit using TRPO to Learn Running in
+                <a href="https://opensim.stanford.edu/">OpenSim</a>
+                 </b> (2018.12) <br>
+           <b>Objective:</b> To design a motor control unit in a virtual environment-OpenSim,
+            by sending activating or deactivating signals to 18 muscles in a muscloskeletal model in each 10ms,
+            so as to achieve the longest displacement in 5 seconds. <br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Train the motor control unit with TRPO with a slight modification on modular RL for a around 1K iterations.
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Then move to google cloud to train this model efficiently meanwhile to avoid memory leak in local environment.
+            <br>
+            <br>
+            <center>
+                <img src="imgs/learningtorun.gif" border="0" width="400">
+            </center>
+
+            <span style="font-size:12px; text-align: center;display:block;" >Figure2. The implementation of HER in Robotics simulator</span>
+            <br>
         </li>
 
 
@@ -159,13 +180,13 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Build network architecture based on the Nvidia’s paper of end to end learning for self-driving car.
             <br><br>
             <img src="imgs/network_structure.png" border="0" width="800"><br>
-            <span style="font-size:12px; text-align: center;display:block;" >Figure1. The network structure of behavior cloning</span>
+            <span style="font-size:12px; text-align: center;display:block;" >Figure3. The network structure of behavior cloning</span>
             <br>
             <table><tr>
                 <td><img src="imgs/Validation_track.gif" border="0" width="400"><br></td>
                 <td><img src="imgs/Unseen_track.gif" border="0" width="400"><br></td>
             </tr></table>
-            <span style="font-size:12px; text-align: center;display:block;" >Figure2. The validation of known track and unseen track</span>
+            <span style="font-size:12px; text-align: center;display:block;" >Figure4. The validation of known track and unseen track</span>
             <br>
             Finally this agent network managed to drive on both known and unseen tracks endlessly.
 
@@ -180,7 +201,7 @@
             Finally, this model beat all models that we built before such as Logistic Regression, CNN and RNN.
         </li>
         <img src="imgs/DeepFM.png" border="0" width="900"><br>
-        <span style="font-size:12px; text-align: center;display:block;" >Figure3. The DeepFM network structure</span>
+        <span style="font-size:12px; text-align: center;display:block;" >Figure5. The DeepFM network structure</span>
         <br><br>
 
 
